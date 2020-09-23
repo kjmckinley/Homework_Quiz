@@ -9,15 +9,15 @@ const answerBtnEl = document.getElementById('select-buttons')
 
 //let variables initially set to undefined to be used to jumble the questions
 //so that they don't appear in the same order every time.
-let randomQuestion, index 
+let randomQuestion, currentIndex 
 
 // event listener that calls the startGame function when clicked.
 startBtn.addEventListener('click', startGame)
 
 //event listener that calls the nextQuestion function to allow nex 
-//button to function and go to the thext index of the array of questions
+//button to function and go to the the currentIndex of the array of questions
 nextBtn.addEventListener('click', () => {
-    index++
+    currentIndex++
     nextQuestion()
 })
 
@@ -26,63 +26,17 @@ function startGame() {
     startBtn.classList.add('hide')
 
     randomQuestion = questions.sort(() => Math.random() - .5)
-    index = 0
+    currentIndex = 0
 
     questionContainerEl.classList.remove('hide')
     // function allocates info for the next question
     nextQuestion()
 }
 
-function setStatus(element, correct) {
-
-    statusWipe(element)
-    if (correct) {
-        element.classList.add('correct')
-    } else {
-        element.classList.add('incorrect')
-    }
-}
-
-function statusWipe(element) {
-    element.classList.remove('correct')
-    element.classList.remove('incorrect')
-}
-
-function makeSelection(i) {
-    const btnSelection = i.target
-    const correct = btnSelection.dataset.correct
-
-    //???
-    setStatus(document.body, correct)
-    Array.from(answerButtonsElement.children).forEach (button => {
-        setStatus(button, button.dataset.correct)
-    })
-
-    //make sure the program stops when we run out of questions
-    if (randomQuestion.length > index + 1) {
-        nextBtn.classList.remove('hide')
-    } else {
-        startBtn.innerText = 'Resart'
-        startBtn.classList.remove('hide')
-    }
-    //reveal next button as soon as question is answered
-    nextBtn.classList.remove('hide')
-}
-
-function refreshQuestion(){
-    statusWipe(document.body)
-    //hide next button again
-    nextBtn.classList.add('hide')
-    //while loop to replace child elements
-    while (answerBtnEl.firstChild) {
-        answerBtnEl.removeChild(answerBtnEl.firstChild)
-    }
-}
-
 function nextQuestion() {
     //function call to set everything back to default state
     refreshQuestion()
-    revealQuestion(randomQuestion[index])
+    revealQuestion(randomQuestion[currentIndex])
 }
 
 function revealQuestion(question) {
@@ -102,6 +56,52 @@ function revealQuestion(question) {
         button.addEventListener('click', makeSelection)
         answerBtnEl.appendChild(button)
     })
+}
+
+function refreshQuestion(){
+    statusWipe(document.body)
+    //hide next button again
+    nextBtn.classList.add('hide')
+    //while loop to replace child elements
+    while (answerBtnEl.firstChild) {
+        answerBtnEl.removeChild(answerBtnEl.firstChild)
+    }
+}
+
+function makeSelection(e) {
+    const btnSelection = e.target
+    const correct = btnSelection.dataset.correct
+
+    //???
+    setStatus(document.body, correct)
+    Array.from(answerBtnEl.children).forEach (button => {
+        setStatus(button, button.dataset.correct)
+    })
+
+    //make sure the program stops when we run out of questions
+    if (randomQuestion.length > currentIndex + 1) {
+        nextBtn.classList.remove('hide')
+    } else {
+        startBtn.innerText = 'Resart'
+        startBtn.classList.remove('hide')
+    }
+    //reveal next button as soon as question is answered
+    nextBtn.classList.remove('hide')
+}
+
+function setStatus(element, correct) {
+
+    statusWipe(element)
+    if (correct) {
+        element.classList.add('correct')
+    } else {
+        element.classList.add('incorrect')
+    }
+}
+
+function statusWipe(element) {
+    element.classList.remove('correct')
+    element.classList.remove('incorrect')
 }
 
 //array of actual questions
