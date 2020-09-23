@@ -80,6 +80,10 @@ body.incorrect {
     font-weight: bold;
     padding: 10px 20px;
   }
+
+.hide {
+    display: none;
+  }  
   
 .controls {
     display: flex;
@@ -87,6 +91,3 @@ body.incorrect {
     align-items: center;
   }
   
-.hide {
-    display: none;
-  }
