@@ -161,3 +161,6 @@ const questions = [
         ]
     },
 ]
+
+//while almost all of my variables and names are mine, credit for helping me figure out 
+//how to make this application semi functional goes to 'Web Dev Simplified'.
