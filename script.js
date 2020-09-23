@@ -115,5 +115,49 @@ const questions = [
             {content: '10', correct: false},
             {content: '4', correct: false}
         ]
-    }
+    },
+
+    {
+        question: 'What did Mulan changer her name to when she joined the Imperial Army?',
+        //array of answers within question
+        answers: [
+            {content: 'Qin', correct: false},
+            {content: 'Lee', correct: false},
+            {content: 'Ping', correct: true},
+            {content: 'Cho', correct: false}
+        ]
+    },
+
+    {
+        question: "What is Prince Charming's real name in Snow White?",
+        //array of answers within question
+        answers: [
+            {content: 'He has no name', correct: false},
+            {content: 'Phillip', correct: false},
+            {content: 'Charles', correct: false},
+            {content: 'Ferdinand', correct: true}
+        ]
+    },
+
+    {
+        question: 'How many older sisters does Ariel have in The Little Mermaid?',
+        //array of answers within question
+        answers: [
+            {content: '8', correct: false},
+            {content: '6', correct: true},
+            {content: '3', correct: false},
+            {content: '4', correct: false}
+        ]
+    },
+
+    {
+        question: 'It is rumored that Elsa and Anna have a long-lost sibling, who is it?',
+        //array of answers within question
+        answers: [
+            {content: 'Hercules', correct: false},
+            {content: 'Jack Frost', correct: false},
+            {content: 'Moana', correct: false},
+            {content: 'Tarzan', correct: true}
+        ]
+    },
 ]
