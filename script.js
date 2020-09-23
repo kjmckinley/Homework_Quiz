@@ -9,7 +9,7 @@ const answerBtnEl = document.getElementById('select-buttons')
 
 //let variables initially set to undefined to be used to jumble the questions
 //so that they don't appear in the same order every time.
-let randomOrder, index 
+let randomQuestion, index 
 
 // event listener that calls the startGame function when clicked.
 startBtn.addEventListener('click', startGame)
@@ -25,7 +25,7 @@ nextBtn.addEventListener('click', () => {
 function startGame() {
     startBtn.classList.add('hide')
 
-    randomOrder = questions.sort(() => Math.random() - .5)
+    randomQuestion = questions.sort(() => Math.random() - .5)
     index = 0
 
     questionContainerEl.classList.remove('hide')
@@ -45,7 +45,7 @@ function setStatus(element, correct) {
 
 function statusWipe(element) {
     element.classList.remove('correct')
-    element.classList.remove('wrong')
+    element.classList.remove('incorrect')
 }
 
 function makeSelection(i) {
@@ -58,11 +58,19 @@ function makeSelection(i) {
         setStatus(button, button.dataset.correct)
     })
 
+    //make sure the program stops when we run out of questions
+    if (randomQuestion.length > index + 1) {
+        nextBtn.classList.remove('hide')
+    } else {
+        startBtn.innerText = 'Resart'
+        startBtn.classList.remove('hide')
+    }
     //reveal next button as soon as question is answered
     nextBtn.classList.remove('hide')
 }
 
 function refreshQuestion(){
+    statusWipe(document.body)
     //hide next button again
     nextBtn.classList.add('hide')
     //while loop to replace child elements
@@ -74,7 +82,7 @@ function refreshQuestion(){
 function nextQuestion() {
     //function call to set everything back to default state
     refreshQuestion()
-    revealQuestion(randomOrder[index])
+    revealQuestion(randomQuestion[index])
 }
 
 function revealQuestion(question) {
@@ -93,7 +101,6 @@ function revealQuestion(question) {
         //calls makeSelection to append new answers when clicked.
         button.addEventListener('click', makeSelection)
         answerBtnEl.appendChild(button)
-
     })
 }
 
