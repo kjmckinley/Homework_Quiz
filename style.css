@@ -1,0 +1,92 @@
+
+*, *::before, *::after {
+    box-sizing: border-box;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
+}
+
+/* custom properties to changes the screen color depending on 
+if the question is answered correctly or not */
+:root {
+    /* user has not answered */
+    --hue-natural: 200;
+    /* user answered incorrectly */
+    --hue-incorrect: 0;
+    /* user answered correctly */
+    --hue-correct: 145;
+}
+
+body {
+    --hue: var(--hue-natural);
+    padding: 0;
+    margin: 0;
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    background-color: hsl(var(--hue), 100%, 20%);
+  }
+
+body.correct {
+    --hue: var(--hue-correct);
+}
+body.incorrect {
+    --hue: var(--hue-incorrect);
+}
+
+.container {
+    width: 800px;
+    max-width: 80%;
+    background-color: white;
+    border-radius: 5px;
+    padding: 10px;
+    box-shadow: 0 0 10px 2px;
+}
+
+.btn {
+    --hue: var(--hue-natural);
+    border: 1px solid hsl(var(--hue), 100%, 30%);
+    background-color: hsl(var(--hue), 100%, 50%);
+    border-radius: 5px;
+    padding: 5px 10px;
+    color: white;
+    outline: none;
+    height: 40px;
+}
+
+
+.btn:hover {
+    border-color: black;
+}
+
+.btn-grid {
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    gap: 10px;
+    margin: 20px 0;
+  }
+
+.btn.correct {
+    --hue: var(--hue-correct);
+    color: black;
+}
+
+.btn.incorrect {
+    --hue: var(--hue-incorrect);
+}
+
+.start-btn, .next-btn {
+    font-size: 20px;
+    font-weight: bold;
+    padding: 10px 20px;
+  }
+  
+.controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+.hide {
+    display: none;
+  }
